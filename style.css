@@ -1,0 +1,1442 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #f8f1e5;
+  background: #17130f;
+  font-synthesis: none;
+
+  --gold: #d5b46a;
+  --cream: #f7f0e3;
+  --ink: #272019;
+  --muted: #b9ab97;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+  background: #17130f;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #3a2b1e 0,
+      #17130f 48%,
+      #0e0c0a 100%
+    );
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 50;
+
+  opacity: 0.055;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+.stars i {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: #fff8dd;
+
+  left: calc(
+    (var(--i) * 37) % 100 * 1%
+  );
+
+  top: calc(
+    (var(--i) * 61) % 100 * 1%
+  );
+
+  opacity: 0.18;
+
+  animation:
+    twinkle
+    calc(
+      3s +
+      (var(--i) % 5) * 1s
+    )
+    ease-in-out
+    infinite
+    alternate;
+}
+
+@keyframes twinkle {
+  to {
+    opacity: 0.65;
+    transform: scale(1.7);
+  }
+}
+
+.screen {
+  min-height: 100svh;
+
+  width: min(
+    100%,
+    1100px
+  );
+
+  margin: auto;
+
+  padding:
+    clamp(72px, 10vw, 120px)
+    clamp(22px, 6vw, 70px)
+    50px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  position: relative;
+
+  z-index: 2;
+
+  animation:
+    screenIn
+    0.9s
+    cubic-bezier(.2, .7, .2, 1)
+    both;
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(20px)
+      scale(.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation:
+    reveal
+    1s
+    cubic-bezier(.2, .7, .2, 1)
+    both;
+}
+
+.d1 {
+  animation-delay: .1s;
+}
+
+.d2 {
+  animation-delay: .2s;
+}
+
+.d3 {
+  animation-delay: .35s;
+}
+
+.d4 {
+  animation-delay: .5s;
+}
+
+.d5 {
+  animation-delay: .7s;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.music {
+  position: fixed;
+
+  z-index: 60;
+
+  top: 18px;
+  right: 18px;
+
+  background: #ffffff0c;
+
+  border:
+    1px solid
+    #ffffff25;
+
+  color: #f7f0e3;
+
+  border-radius: 999px;
+
+  padding:
+    9px 13px;
+
+  font-size: 10px;
+
+  letter-spacing: .12em;
+
+  backdrop-filter: blur(12px);
+
+  cursor: pointer;
+}
+
+.eyebrow {
+  font-size: 10px;
+
+  letter-spacing: .28em;
+
+  color: var(--gold);
+
+  margin:
+    0 0 22px;
+}
+
+.welcome h1,
+.intro h2,
+.wall h2,
+.final h2 {
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-weight: 500;
+
+  line-height: .93;
+
+  font-size:
+    clamp(
+      46px,
+      8vw,
+      86px
+    );
+
+  margin: 0;
+
+  letter-spacing: -.035em;
+}
+
+.welcome h1 em,
+.intro h2 span,
+.wall h2 em,
+.final h2 em {
+  font-style: italic;
+
+  color: #e7d7b5;
+}
+
+.lead {
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  max-width: 480px;
+
+  margin: 26px 0;
+}
+
+.orb {
+  position: absolute;
+
+  width: 340px;
+  height: 340px;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  opacity: .13;
+
+  pointer-events: none;
+
+  animation:
+    floatOrb
+    9s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.orb-a {
+  background: #c9984c;
+
+  top: 8%;
+  left: -160px;
+}
+
+.orb-b {
+  background: #b58a57;
+
+  right: -180px;
+  bottom: 5%;
+
+  animation-delay: -4s;
+}
+
+@keyframes floatOrb {
+  to {
+    transform:
+      translate(35px, -25px)
+      scale(1.12);
+  }
+}
+
+.name-card {
+  width:
+    min(
+      100%,
+      430px
+    );
+
+  padding: 24px;
+
+  background: #ffffff08;
+
+  border:
+    1px solid
+    #ffffff18;
+
+  border-radius: 24px;
+
+  backdrop-filter: blur(18px);
+
+  text-align: left;
+
+  box-shadow:
+    0 20px 80px
+    #0004;
+}
+
+.name-card label {
+  font-size: 11px;
+
+  color: #c8bba8;
+
+  letter-spacing: .08em;
+}
+
+.name-card input {
+  width: 100%;
+
+  margin:
+    10px 0 12px;
+
+  border:
+    1px solid
+    #ffffff22;
+
+  background: #0d0b09;
+
+  color: #fff7e9;
+
+  border-radius: 14px;
+
+  padding: 15px;
+
+  font: inherit;
+
+  outline: none;
+}
+
+.name-card input:focus {
+  border-color: #d5b46a88;
+
+  box-shadow:
+    0 0 0 4px
+    #d5b46a14;
+}
+
+.primary {
+  border: 0;
+
+  border-radius: 999px;
+
+  background: var(--gold);
+
+  color: #21180d;
+
+  padding:
+    13px 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .25s;
+
+  box-shadow:
+    0 10px 30px
+    #d5b46a22;
+}
+
+.primary:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 14px 35px
+    #d5b46a35;
+}
+
+.primary span,
+.continue span {
+  margin-left: 12px;
+}
+
+.tiny {
+  font-size: 10px;
+
+  letter-spacing: .12em;
+
+  color: #817768;
+
+  margin-top: 30px;
+}
+
+.notice {
+  font-size: 11px;
+
+  color: #d7c5a6;
+
+  line-height: 1.5;
+
+  margin:
+    12px 0 0;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 16px;
+}
+
+.intro h2 {
+  font-size:
+    clamp(
+      64px,
+      12vw,
+      110px
+    );
+}
+
+.intro .lead {
+  margin-bottom: 38px;
+}
+
+.envelope-wrap {
+  background: none;
+
+  border: 0;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  perspective: 900px;
+
+  animation:
+    envelopeFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes envelopeFloat {
+  50% {
+    transform:
+      translateY(-8px);
+  }
+}
+
+.envelope {
+  width:
+    min(
+      78vw,
+      360px
+    );
+
+  aspect-ratio:
+    1.45 / 1;
+
+  background: #4c3825;
+
+  border-radius: 5px;
+
+  position: relative;
+
+  box-shadow:
+    0 28px 70px
+    #0008;
+
+  transform:
+    rotate(-1deg);
+
+  transition: .5s;
+}
+
+.envelope:hover {
+  transform:
+    translateY(-6px)
+    rotate(0)
+    scale(1.02);
+}
+
+.envelope:after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5236 0 50%,
+      #4d3825 50%
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 50%,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+
+  border-radius: 5px;
+}
+
+.flap {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 62%;
+
+  background: #795d3d;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 78%
+    );
+
+  transform-origin: top;
+
+  transition:
+    transform .5s;
+}
+
+.envelope:hover .flap {
+  transform:
+    rotateX(10deg);
+}
+
+.paper {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 9%;
+  right: 9%;
+
+  top: 8%;
+
+  height: 80%;
+
+  background: #f6ecda;
+
+  color: #392c20;
+
+  padding-top: 35px;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 7px 20px
+    #0003;
+}
+
+.paper b {
+  font-size: 30px;
+}
+
+.seal {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -10%);
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #c59d59;
+
+  color: #281d12;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 4px 12px
+    #0004;
+}
+
+.hint {
+  font-size: 11px;
+
+  color: #8f8374;
+
+  letter-spacing: .08em;
+
+  margin-top: 26px;
+}
+
+.letter-screen {
+  padding-top: 60px;
+}
+
+.letter {
+  width:
+    min(
+      100%,
+      690px
+    );
+
+  background:
+    var(--cream);
+
+  color:
+    var(--ink);
+
+  text-align: left;
+
+  padding:
+    clamp(
+      30px,
+      6vw,
+      72px
+    );
+
+  box-shadow:
+    0 30px 100px
+    #0009;
+
+  position: relative;
+}
+
+.letter:before {
+  content: "";
+
+  position: absolute;
+
+  inset: 14px;
+
+  border:
+    1px solid
+    #b99b6b66;
+
+  pointer-events: none;
+}
+
+.letter-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 9px;
+
+  letter-spacing: .25em;
+
+  color: #8c7655;
+}
+
+.letter-rule {
+  height: 1px;
+
+  background:
+    #b89d744d;
+
+  margin:
+    18px 0 34px;
+}
+
+.letter-kicker {
+  font-size: 10px;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+
+  color: #9b825c;
+}
+
+.handwriting {
+  font-family:
+    "Caveat",
+    cursive;
+
+  font-size: 24px;
+
+  line-height: 1.45;
+}
+
+.handwriting p {
+  margin:
+    0 0 17px;
+
+  min-height:
+    1.2em;
+}
+
+.handwriting p:first-child {
+  font-size: 34px;
+
+  font-weight: 600;
+
+  margin-bottom: 25px;
+}
+
+.handwriting .urdu {
+  font-family: serif;
+
+  font-size: 24px;
+
+  text-align: center;
+
+  direction: rtl;
+
+  color: #765c3c;
+
+  margin:
+    28px 0;
+}
+
+.cursor {
+  display: inline-block;
+
+  width: 2px;
+
+  height: 1.05em;
+
+  background:
+    #795d3d;
+
+  margin-left: 3px;
+
+  vertical-align: -.12em;
+
+  animation:
+    blink .8s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.signature {
+  margin-top: 34px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  font-family:
+    "Caveat",
+    cursive;
+
+  font-size: 25px;
+}
+
+.signature strong {
+  font-size: 45px;
+
+  font-style: italic;
+}
+
+.continue {
+  margin-top: 28px;
+
+  border:
+    1px solid
+    #ffffff25;
+
+  background:
+    #ffffff09;
+
+  color:
+    #f6ecda;
+
+  border-radius: 999px;
+
+  padding:
+    12px 18px;
+
+  cursor: pointer;
+
+  animation:
+    pulseSoft
+    2.5s
+    infinite;
+}
+
+@keyframes pulseSoft {
+  50% {
+    box-shadow:
+      0 0 0 9px
+      #d5b46a08;
+  }
+}
+
+.wall h2 {
+  font-size:
+    clamp(
+      50px,
+      8vw,
+      80px
+    );
+}
+
+.impact-grid {
+  width:
+    min(
+      100%,
+      760px
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      1fr
+    );
+
+  gap: 12px;
+
+  margin:
+    40px 0;
+}
+
+.impact {
+  padding: 28px;
+
+  text-align: left;
+
+  border:
+    1px solid
+    #ffffff14;
+
+  background:
+    #ffffff06;
+
+  border-radius: 20px;
+
+  min-height: 140px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  animation:
+    cardIn
+    .8s
+    calc(
+      var(--i) * .14s
+    )
+    both;
+}
+
+.impact:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    #d5b46a44;
+
+  background:
+    #d5b46a08;
+
+  transition: .3s;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      rotateX(8deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: none;
+  }
+}
+
+.impact span {
+  font-size: 10px;
+
+  color:
+    var(--gold);
+
+  letter-spacing: .18em;
+}
+
+.impact b {
+  font:
+    500 30px/1.05
+    "Cormorant Garamond",
+    serif;
+}
+
+.wall blockquote {
+  font:
+    400 25px/1.35
+    "Cormorant Garamond",
+    serif;
+
+  margin: 25px 0;
+
+  color:
+    #d8cbb8;
+}
+
+.wall blockquote em {
+  color:
+    #e6d3a9;
+}
+
+.wall-urdu {
+  font-size: 18px;
+
+  margin:
+    0 0 30px;
+}
+
+.final h2 {
+  position: relative;
+
+  font-size:
+    clamp(
+      58px,
+      10vw,
+      100px
+    );
+
+  animation:
+    finalTitle
+    1.4s
+    ease
+    both;
+}
+
+@keyframes finalTitle {
+  from {
+    opacity: 0;
+
+    letter-spacing: .05em;
+
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    letter-spacing: -.035em;
+
+    filter: none;
+  }
+}
+
+.final-glow {
+  position: absolute;
+
+  width: 440px;
+  height: 440px;
+
+  border-radius: 50%;
+
+  background:
+    #d5b46a;
+
+  filter:
+    blur(120px);
+
+  opacity: .12;
+
+  animation:
+    glow
+    5s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+@keyframes glow {
+  to {
+    transform: scale(1.25);
+
+    opacity: .2;
+  }
+}
+
+.final-copy {
+  max-width: 520px;
+
+  color: #bfb1a0;
+
+  line-height: 1.8;
+
+  font-size: 14px;
+
+  margin:
+    25px 0;
+}
+
+.signature.big {
+  position: relative;
+
+  align-items: center;
+
+  margin-top: 12px;
+}
+
+.signature.big strong {
+  font-size: 60px;
+}
+
+.surprise-zone {
+  position: relative;
+
+  margin:
+    24px auto 0;
+
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+
+  place-items: center;
+
+  color:
+    #d5b46a;
+
+  opacity: .45;
+
+  cursor: pointer;
+
+  transition: .4s;
+}
+
+.surprise-zone:hover {
+  opacity: 1;
+
+  transform:
+    scale(1.2)
+    rotate(15deg);
+}
+
+.surprise {
+  position: relative;
+
+  max-width: 440px;
+
+  margin:
+    10px auto 0;
+
+  padding:
+    16px 20px;
+
+  border:
+    1px solid
+    #d5b46a55;
+
+  background:
+    #d5b46a0d;
+
+  border-radius: 16px;
+
+  animation:
+    surpriseIn
+    .8s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+}
+
+@keyframes surpriseIn {
+  from {
+    opacity: 0;
+
+    transform:
+      scale(.8)
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: none;
+  }
+}
+
+.surprise p,
+.surprise strong,
+.surprise span {
+  display: block;
+
+  margin: 4px;
+}
+
+.surprise strong {
+  font:
+    600 24px
+    "Cormorant Garamond",
+    serif;
+
+  color:
+    #e8d8b6;
+}
+
+.surprise span {
+  font-size: 11px;
+
+  color:
+    #b9ab97;
+}
+
+.actions {
+  position: relative;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 32px;
+}
+
+.actions button {
+  border:
+    1px solid
+    #ffffff1e;
+
+  background:
+    #ffffff08;
+
+  color:
+    #eee4d4;
+
+  border-radius: 999px;
+
+  padding:
+    11px 14px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.actions button:hover {
+  border-color:
+    #d5b46a66;
+
+  transform:
+    translateY(-2px);
+}
+
+.export-stage {
+  position: fixed;
+
+  left: -1200px;
+  top: 0;
+
+  width: 1000px;
+  height: 1414px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.export-card {
+  width: 1000px;
+  height: 1414px;
+
+  background:
+    #f7f0e3;
+
+  color:
+    #272019;
+
+  padding: 44px;
+}
+
+.export-inner {
+  width: 100%;
+  height: 100%;
+
+  border:
+    1px solid
+    #b99b6b66;
+
+  padding:
+    75px 85px;
+
+  position: relative;
+}
+
+.export-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  font:
+    600 15px
+    Inter;
+
+  letter-spacing: .25em;
+
+  color:
+    #8c7655;
+}
+
+.export-line {
+  height: 2px;
+
+  background:
+    #b89d744d;
+
+  margin:
+    25px 0 55px;
+}
+
+.export-kicker {
+  font:
+    500 14px
+    Inter;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+
+  color:
+    #9b825c;
+}
+
+.export-card h2 {
+  font:
+    600 52px
+    "Caveat",
+    cursive;
+
+  margin:
+    35px 0 28px;
+}
+
+.export-card p {
+  font:
+    500 29px/1.42
+    "Caveat",
+    cursive;
+
+  margin:
+    0 0 24px;
+}
+
+.export-card .urdu {
+  font-family: serif;
+
+  font-size: 30px;
+
+  text-align: center;
+
+  direction: rtl;
+
+  color:
+    #765c3c;
+
+  margin:
+    40px 0;
+}
+
+.export-sign {
+  font:
+    500 31px
+    "Caveat",
+    cursive;
+
+  margin-top: 55px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.export-sign strong {
+  font-size: 58px;
+
+  font-style: italic;
+}
+
+.export-footer {
+  position: absolute;
+
+  bottom: 38px;
+
+  left: 85px;
+  right: 85px;
+
+  text-align: center;
+
+  font:
+    11px
+    Inter;
+
+  letter-spacing: .12em;
+
+  color:
+    #9b825c;
+}
+
+@media (max-width: 600px) {
+
+  .screen {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .welcome h1 {
+    font-size: 48px;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact {
+    min-height: 115px;
+  }
+
+  .impact b {
+    font-size: 26px;
+  }
+
+  .letter {
+    padding: 34px 28px;
+  }
+
+  .letter:before {
+    inset: 9px;
+  }
+
+  .handwriting {
+    font-size: 23px;
+  }
+
+  .music {
+    top: 12px;
+    right: 12px;
+  }
+
+  .actions button {
+    flex:
+      1 1
+      calc(50% - 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+  .stars {
+    display: none;
+  }
+}
