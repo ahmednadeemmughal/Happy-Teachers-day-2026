@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import './styles.css';
+import './style.css';
 
 const LETTER = (name) => [
   `Dear ${name},`,
